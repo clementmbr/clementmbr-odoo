@@ -1,0 +1,48 @@
+odoo:
+    modules: []
+    src: https://github.com/oca/ocb 14.0
+
+server-brand:
+    modules: [disable_odoo_online, remove_odoo_enterprise]
+    remotes:
+        oca: https://github.com/OCA/server-brand
+    merges:
+        - oca 14.0
+        - oca refs/pull/39/head # remove_odoo_enterprise
+
+social:
+    modules: [mail_debrand, base_search_mail_content]
+    src: https://github.com/OCA/social 14.0
+
+web:
+    modules: [
+        web_responsive,
+        web_notify,
+        web_dialog_size,
+        web_listview_range_select, # not migrated yet
+    ]
+    src: https://github.com/OCA/web 14.0
+
+backend_theme:
+    modules: [backend_theme_v14]
+    src: https://github.com/Openworx/backend_theme 14.0
+
+account-financial-tools:
+    modules: [account_menu]
+    src: https://github.com/oca/account-financial-tools 14.0
+
+l10n-france:
+    modules: [
+        l10n_fr_department,
+        l10n_fr_siret,
+        l10n_fr_state,
+    ]
+    src: https://github.com/OCA/l10n-france 14.0
+
+account-invoicing:
+  modules: [sale_timesheet_invoice_description]
+  remotes:
+      oca: https://github.com/OCA/account-invoicing
+  merges:
+      - oca 14.0
+      - oca refs/pull/901/head # improved sale_timesheet_invoice_description

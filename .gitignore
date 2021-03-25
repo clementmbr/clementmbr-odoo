@@ -1,0 +1,36 @@
+# dotfiles
+# .*
+.env
+!.travis
+!.dockerignore
+!.gitignore
+!.gitlab-ci.yml
+# compiled python files
+*.py[cod]
+# setup.py egg_info
+*.egg-info
+*.eggs
+
+/odoo/src
+/odoo/external-src
+/odoo/links
+# agreggator
+/odoo/pip-selfcheck.json
+/odoo/repo.yaml
+/odoo/repos.yaml
+# translation
+*.mo
+# project
+/odoo/dump
+/odoo/lfg
+/odoo/lfg.egg-info
+/odoo/local-src/studio
+/odoo/local-src/tmp
+.db
+/data
+LFG.txt
+# editors
+*.sublime-project
+*.sublime-workspace
+# IDE
+.idea/
