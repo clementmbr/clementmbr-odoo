@@ -38,8 +38,12 @@
         "backend_theme_v14",
         # https://github.com/OCA/account-invoicing
         "sale_timesheet_invoice_description",
-
     ],
-    "data": ["data/clementmbr_data.xml"],
+    "data": [
+        "data/clementmbr_data.xml",
+        "report/report_templates.xml",
+        "report/sale_report_templates.xml",
+        "report/invoice_report_templates.xml",
+    ],
     "demo": [],
 }

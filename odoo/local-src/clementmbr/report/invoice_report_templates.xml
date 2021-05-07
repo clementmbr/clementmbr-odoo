@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_invoice_document"
+              inherit_id="account.report_invoice_document">
+
+        <!-- Hide client VAT -->
+        <xpath expr="//div[@t-if='o.partner_id.vat']" position="attributes">
+            <attribute name="style">display: none !important;</attribute>
+        </xpath>
+
+        <!-- Remove taxes in lines -->
+        <xpath expr="//th[@name='th_taxes']" position="attributes">
+            <attribute name="style">display: none !important;</attribute>
+        </xpath>
+        <xpath expr="//span[@id='line_tax_ids']/.." position="attributes">
+            <attribute name="style">display: none !important;</attribute>
+        </xpath>
+        <!-- Remove subtotal excluding Taxes-->
+        <xpath expr="//span[@t-field='o.amount_untaxed']/../.." position="attributes">
+            <attribute name="style">display: none !important;</attribute>
+        </xpath>
+
+        <!-- Modify total Unit Price label -->
+        <xpath expr="//th[@name='th_priceunit']" position="attributes">
+            <attribute name="style">display: none !important;</attribute>
+        </xpath>
+        <xpath expr="//th[@name='th_priceunit']" position="after">
+            <th name="th_priceunit_no_tax" t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"><span>Prix Unitaire HT</span></th>
+        </xpath>
+        <!-- Modify total Subtotal label -->
+        <xpath expr="//th[@name='th_subtotal']" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+        <xpath expr="//th[@name='th_subtotal']" position="after">
+            <th name="th_subtotal_no_tax" class="text-right">
+                <span groups="account.group_show_line_subtotals_tax_excluded">Montant HT</span>
+                <span groups="account.group_show_line_subtotals_tax_included">Montant HT</span>
+            </th>
+        </xpath>
+        <!-- Modify total label -->
+        <xpath expr="//tr[hasclass('o_total')]/td[1]" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+        <xpath expr="//tr[hasclass('o_total')]/td[1]" position="after">
+            <td name="total_label_no_tax"><strong>Total HT</strong></td>
+        </xpath>
+
+    </template>
+</odoo>

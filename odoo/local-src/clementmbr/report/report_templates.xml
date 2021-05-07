@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="external_layout_clean" inherit_id="web.external_layout_clean">
+        <xpath expr="//li[@t-if='company.vat']" position="after">
+            <li t-if="company.siret">SIRET: <span t-field="company.siret" /></li>
+        </xpath>
+
+        <xpath expr="//span[@t-field='company.partner_id']/.." position="attributes">
+          <attribute name="class">text-center text-secondary</attribute>
+        </xpath>
+
+    </template>
+</odoo>

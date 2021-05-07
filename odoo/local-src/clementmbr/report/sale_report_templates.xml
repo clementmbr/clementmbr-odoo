@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_saleorder_document"
+              inherit_id="sale.report_saleorder_document">
+
+        <!-- Remove taxes in lines -->
+        <xpath expr="//th[@name='th_taxes']" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+        <xpath expr="//td[@name='td_taxes']" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+        <!-- Remove subtotal excluding Taxes-->
+        <xpath expr="//td[@name='td_amount_untaxed']/.." position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+        <!-- Remove total Taxes -->
+        <xpath expr="//td[@name='td_amount_by_group']/../.." position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+
+        <!-- Modify total Unit Price label -->
+        <xpath expr="//th[@name='th_priceunit']" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+        <xpath expr="//th[@name='th_priceunit']" position="after">
+            <th name="th_priceunit_no_tax" class="text-right">Prix Unitaire HT</th>
+        </xpath>
+        <!-- Modify total Subtotal label -->
+        <xpath expr="//th[@name='th_subtotal']" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+        <xpath expr="//th[@name='th_subtotal']" position="after">
+            <th name="th_subtotal_no_tax" class="text-right">
+                <span groups="account.group_show_line_subtotals_tax_excluded">Montant HT</span>
+                <span groups="account.group_show_line_subtotals_tax_included">Montant HT</span>
+            </th>
+        </xpath>
+        <!-- Modify total label -->
+        <xpath expr="//td[@name='td_amount_total_label']" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+        <xpath expr="//td[@name='td_amount_total_label']" position="after">
+            <td name="td_amount_total_label_no_tax"><strong>Total HT</strong></td>
+        </xpath>        
+
+    </template>
+</odoo>
