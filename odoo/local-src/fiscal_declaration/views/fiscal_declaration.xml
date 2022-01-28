@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2022 Akretion
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="fiscal_declaration_form_view">
+        <field name="name">fiscal.declaration.form (in fiscal_declaration)</field>
+        <field name="model">fiscal.declaration</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group class="col-12 col-lg-6">
+                        <field name="name"/>
+                        <field name="declaration_date"/>
+                    </group>
+                    <separator />
+                    <group class="col-12 col-lg-6">
+                        <field name="move_ids"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="fiscal_declaration_tree_view">
+        <field name="name">fiscal.declaration.tree (in fiscal_declaration)</field>
+        <field name="model">fiscal.declaration</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="declaration_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="fiscal_declaration_act_window">
+        <field name="name">Fiscal Declarations</field>
+        <field name="res_model">fiscal.declaration</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.ui.menu" id="fiscal_declaration_menu">
+        <field name="name">Fiscal Declarations</field>
+        <field name="parent_id" ref="account.menu_finance_entries"/>
+        <field name="action" ref="fiscal_declaration_act_window"/>
+        <field name="sequence" eval="999"/>
+    </record>
+
+</odoo>
